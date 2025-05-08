@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>cn.chenlijian.little</groupId>
+  <groupId>cn.chenlijian.little.demo</groupId>
   <artifactId>little-demo</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
   <name>little-demo</name>
 
   <properties>
-    <!-- Little-Util Version -->
+    <!-- Little Version -->
     <revision>1.0.0-SNAPSHOT</revision>
     <module.name>cn.chenlijian.little.demo</module.name>
     <!-- jdk Version -->
@@ -23,25 +23,26 @@
   </properties>
 
   <modules>
-
+    <module>little-starter-log-demo</module>
   </modules>
 
   <dependencyManagement>
     <dependencies>
-      <!-- little util -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>3.2.12</version>
+      </dependency>
+      <!-- little -->
       <dependency>
         <groupId>cn.chenlijian.little</groupId>
-        <artifactId>little-util</artifactId>
+        <artifactId>little-common</artifactId>
         <version>${revision}</version>
-        <type>pom</type>
-        <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>cn.chenlijian.little</groupId>
-        <artifactId>little-core-bom</artifactId>
+        <artifactId>little-starter-log</artifactId>
         <version>${revision}</version>
-        <type>pom</type>
-        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -178,53 +179,6 @@
           </snapshots>
         </pluginRepository>
       </pluginRepositories>
-    </profile>
-    <profile>
-      <id>release</id>
-      <build>
-        <plugins>
-          <!-- Javadoc -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.10.1</version>
-            <executions>
-              <execution>
-                <phase>package</phase>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <!-- GPG -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
-            <executions>
-              <execution>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <!-- Nexus -->
-          <!--<plugin>
-              <groupId>org.sonatype.plugins</groupId>
-              <artifactId>nexus-staging-maven-plugin</artifactId>
-              <version>1.6.8</version>
-              <extensions>true</extensions>
-              <configuration>
-                  <serverId>oss</serverId>
-                  <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                  <autoReleaseAfterClose>true</autoReleaseAfterClose>
-              </configuration>
-          </plugin>-->
-        </plugins>
-      </build>
     </profile>
   </profiles>
 </project>
