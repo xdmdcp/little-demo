@@ -1,0 +1,8 @@
+server:
+  port: 8080
+little:
+  log:
+    enabled: true
+    exclude-paths:
+      - /user/skip
+      - /user/skip/**
