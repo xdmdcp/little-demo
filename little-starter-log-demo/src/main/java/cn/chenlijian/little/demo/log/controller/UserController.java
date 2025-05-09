@@ -13,7 +13,6 @@ public class UserController {
     @ApiLog(value = "hello")
     @GetMapping("/hello")
     public String hello(@RequestParam(value = "name", required = false) String name) {
-        log.info("hello " + name);
         return "hello " + name;
     }
 }
