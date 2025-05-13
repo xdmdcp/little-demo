@@ -4,5 +4,9 @@ little:
   log:
     enabled: true
     exclude-paths:
+      - /actuator/**
       - /user/skip
       - /user/skip/**
+    sampling:
+      rate: 0.1
+      includeError: true
